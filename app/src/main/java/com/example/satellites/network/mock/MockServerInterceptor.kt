@@ -3,7 +3,8 @@ package com.example.satellites.network.mock
 import android.content.Context
 import com.example.satellites.network.mock.MockServerRequest.*
 import com.example.satellites.network.model.response.SatelliteDetail
-import com.example.satellites.network.model.response.SatellitePosition
+import com.example.satellites.network.model.response.SatellitePositionList
+import com.example.satellites.network.model.response.SatellitePositionListItem
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.adapter
@@ -43,15 +44,13 @@ class MockServerInterceptor(
             }
 
             POSITIONS -> {
-                val type =
-                    Types.newParameterizedType(List::class.java, SatellitePosition::class.java)
-                val positionListJsonAdapter = moshi.adapter<List<SatellitePosition>>(type)
-                val satelliteDetailList = positionListJsonAdapter.fromJson(jsonString)
-                val satellitePosition = satelliteDetailList?.find { satellitePosition ->
-                    satellitePosition.id == urlPaths.last().toInt()
+                val positionListJsonAdapter = moshi.adapter<SatellitePositionList>()
+                val satellitePositionList = positionListJsonAdapter.fromJson(jsonString)
+                val satellitePositionListItem = satellitePositionList?.list?.find { positionListItem ->
+                    positionListItem.id == urlPaths.last().toInt()
                 }
-                val positionJsonAdapter = moshi.adapter<SatellitePosition>() // OptIn
-                positionJsonAdapter.toJson(satellitePosition)
+                val positionJsonAdapter = moshi.adapter<SatellitePositionListItem>() // OptIn
+                positionJsonAdapter.toJson(satellitePositionListItem)
             }
         }
         return chain.proceed(request)

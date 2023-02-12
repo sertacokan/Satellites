@@ -3,13 +3,18 @@ package com.example.satellites.network.model.response
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class SatellitePosition(
+data class SatellitePositionList(
+    val list: List<SatellitePositionListItem>
+)
+
+@JsonClass(generateAdapter = true)
+data class SatellitePositionListItem(
     val id: Int,
-    val position: List<Position>
+    val positions: List<Position>
 )
 
 @JsonClass(generateAdapter = true)
 data class Position(
     val posX: Float,
-    val posy: Float
+    val posY: Float
 )
