@@ -13,7 +13,7 @@ interface MockService {
     suspend fun fetchSatellites(): NetworkState<List<Satellite>?>
 
     @GET("position/{id}")
-    suspend fun fetchPositions(id: Int): NetworkState<SatellitePosition?>
+    suspend fun fetchPositions(@Path("id") id: Int): NetworkState<SatellitePosition?>
 
     @GET("detail/{id}")
     suspend fun fetchDetail(@Path("id") id: Int): NetworkState<SatelliteDetail?>
