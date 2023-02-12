@@ -34,13 +34,14 @@ class MockServerInterceptor(
                 val satelliteDetail = satelliteDetailList?.find { satelliteDetail ->
                     satelliteDetail.id == urlPaths.last().toInt()
                 }
-                // This declaration needs opt-in. Its usage must be marked with '@kotlin.ExperimentalStdlibApi' or '@OptIn(kotlin.ExperimentalStdlibApi::class)'
-                val detailJsonAdapter = moshi.adapter<SatelliteDetail>()
+                val detailJsonAdapter = moshi.adapter<SatelliteDetail>() // OptIn
                 detailJsonAdapter.toJson(satelliteDetail)
             }
+
             LIST -> {
                 jsonString // Returns list
             }
+
             POSITIONS -> {
                 val type =
                     Types.newParameterizedType(List::class.java, SatellitePosition::class.java)
@@ -49,8 +50,7 @@ class MockServerInterceptor(
                 val satellitePosition = satelliteDetailList?.find { satellitePosition ->
                     satellitePosition.id == urlPaths.last().toInt()
                 }
-                // This declaration needs opt-in. Its usage must be marked with '@kotlin.ExperimentalStdlibApi' or '@OptIn(kotlin.ExperimentalStdlibApi::class)'
-                val positionJsonAdapter = moshi.adapter<SatellitePosition>()
+                val positionJsonAdapter = moshi.adapter<SatellitePosition>() // OptIn
                 positionJsonAdapter.toJson(satellitePosition)
             }
         }
