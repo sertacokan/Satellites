@@ -5,6 +5,6 @@
     <string name="passive_state">Pasif</string>
     <string name="active_state">Aktif</string>
     <string name="height_mass_formatted_text"><![CDATA[<b>Ağırlık/Kütle: </b>%1$d/%2$d]]></string>
-    <string name="cost_formatted_text"><![CDATA[<b>Fiyatı: </b>%1$d]]></string>
-    <string name="last_position_formatted_text"><![CDATA[<b>Son Pozisyonu: </b>%1$f,%2$f]]></string>
+    <string name="cost_formatted_text"><![CDATA[<b>Maliyeti: </b>%1$d]]></string>
+    <string name="last_position_formatted_text"><![CDATA[<b>Son Pozisyonu: </b>(%1$f,%2$f)]]></string>
 </resources>
