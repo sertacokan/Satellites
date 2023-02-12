@@ -30,10 +30,9 @@ class SatelliteListFragment : Fragment(R.layout.fragment_satellite_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         collectUiState()
-        binding.satelliteListRV.adapter = SatelliteListAdapter { satelliteId ->
+        binding.satelliteListRV.adapter = SatelliteListAdapter { satelliteId, satelliteName ->
             findNavController().navigate(
-                SatelliteListFragmentDirections
-                    .actionSatelliteListFragmentToSatelliteDetailFragment(satelliteId)
+                SatelliteListFragmentDirections.actionSatelliteListFragmentToSatelliteDetailFragment(satelliteId, satelliteName)
             )
         }
         binding.satelliteListRV.addItemDecoration(
@@ -53,11 +52,7 @@ class SatelliteListFragment : Fragment(R.layout.fragment_satellite_list) {
                         .collect { uiState ->
                             when (uiState) {
                                 is Error -> {
-                                    Toast.makeText(
-                                        requireContext(),
-                                        uiState.messageRes,
-                                        Toast.LENGTH_LONG
-                                    ).show()
+                                    Toast.makeText(requireContext(), uiState.messageRes, Toast.LENGTH_LONG).show()
                                 }
 
                                 Loading -> {

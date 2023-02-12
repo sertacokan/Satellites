@@ -9,13 +9,13 @@ import com.example.satellites.databinding.ItemSatelliteListBinding
 
 class SatelliteListHolder private constructor(
     private val binding: ItemSatelliteListBinding,
-    private val onItemClicked: (Int) -> Unit
+    private val onItemClicked: (Int, String) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
     private var satelliteEntityItem: SatelliteEntity? = null
 
     companion object {
-        fun create(parent: ViewGroup, onItemClicked: (Int) -> Unit): SatelliteListHolder {
+        fun create(parent: ViewGroup, onItemClicked: (Int, String) -> Unit): SatelliteListHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
             val binding = ItemSatelliteListBinding.inflate(layoutInflater, parent, false)
             return SatelliteListHolder(binding, onItemClicked)
@@ -25,7 +25,7 @@ class SatelliteListHolder private constructor(
     init {
         binding.root.setOnClickListener {
             satelliteEntityItem?.let { satelliteEntity ->
-                onItemClicked(satelliteEntity.id)
+                onItemClicked(satelliteEntity.id, satelliteEntity.name)
             }
         }
     }

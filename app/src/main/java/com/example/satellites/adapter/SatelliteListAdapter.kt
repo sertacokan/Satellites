@@ -7,7 +7,7 @@ import com.example.satellites.database.list.SatelliteEntity
 import com.example.satellites.holder.SatelliteListHolder
 
 class SatelliteListAdapter(
-    val onItemClicked: (Int) -> Unit
+    private val onItemClicked: (Int, String) -> Unit
 ) : ListAdapter<SatelliteEntity, SatelliteListHolder>(SatelliteEntityDiffUtil) {
 
     private companion object SatelliteEntityDiffUtil : DiffUtil.ItemCallback<SatelliteEntity>() {
