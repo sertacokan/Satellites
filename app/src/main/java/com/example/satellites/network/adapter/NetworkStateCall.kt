@@ -15,12 +15,12 @@ class NetworkStateCall<T>(private val proxy: Call<T>) : Call<NetworkState<T>> {
                 if (response.isSuccessful && responseBody != null) {
                     callback.onResponse(
                         this@NetworkStateCall,
-                        Response.success(Success(responseBody))
+                        Response.success(SuccessState(responseBody))
                     )
                 } else {
                     callback.onResponse(
                         this@NetworkStateCall,
-                        Response.success(Error)
+                        Response.success(ErrorState)
                     )
                 }
             }
@@ -28,7 +28,7 @@ class NetworkStateCall<T>(private val proxy: Call<T>) : Call<NetworkState<T>> {
             override fun onFailure(call: Call<T>, t: Throwable) {
                 callback.onResponse(
                     this@NetworkStateCall,
-                    Response.success(Failure(t))
+                    Response.success(FailureState(t))
                 )
             }
         })
