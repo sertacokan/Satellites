@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Satellites</string>
-    <string name="error_message">Bir hata meydana geldi.Tekrar denemek için sayfayı kaydırınız</string>
+    <string name="list_error_message">Bir hata meydana geldi.Tekrar denemek için sayfayı kaydırınız</string>
+    <string name="detail_error_message">Bir hata meydana geldi!</string>
     <string name="passive_state">Pasif</string>
     <string name="active_state">Aktif</string>
+    <string name="height_mass_formatted_text"><b>Ağırlık/Kütle: </b>%1$d/%2$d</string>
+    <string name="cost_formatted_text"><b>Fiyatı: </b>%1$d</string>
+    <string name="last_position_formatted_text"><b>Son Pozisyonu: </b>%1$f,%2$f</string>
 </resources>
