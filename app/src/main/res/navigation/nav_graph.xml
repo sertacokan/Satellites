@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/satelliteListFragment">
+
+    <fragment
+        android:id="@+id/satelliteListFragment"
+        tools:layout="@layout/fragment_satellite_list"
+        android:name="com.example.satellites.ui.fragment.list.SatelliteListFragment"
+        android:label="SatelliteListFragment" >
+        <action
+            android:id="@+id/action_satelliteListFragment_to_satelliteDetailFragment"
+            app:destination="@id/satelliteDetailFragment" />
+    </fragment>
+
+    <fragment
+        tools:layout="@layout/fragment_satellite_detail"
+        android:id="@+id/satelliteDetailFragment"
+        android:name="com.example.satellites.ui.fragment.detail.SatelliteDetailFragment"
+        android:label="SatelliteDetailFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
+
+</navigation>
