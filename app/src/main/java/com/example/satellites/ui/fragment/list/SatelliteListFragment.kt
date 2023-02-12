@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.satellites.R
 import com.example.satellites.adapter.SatelliteListAdapter
@@ -29,8 +30,18 @@ class SatelliteListFragment : Fragment(R.layout.fragment_satellite_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         collectUiState()
-        binding.satelliteListRV.adapter = SatelliteListAdapter()
-        binding.satelliteListRV.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+        binding.satelliteListRV.adapter = SatelliteListAdapter { satelliteId ->
+            findNavController().navigate(
+                SatelliteListFragmentDirections
+                    .actionSatelliteListFragmentToSatelliteDetailFragment(satelliteId)
+            )
+        }
+        binding.satelliteListRV.addItemDecoration(
+            DividerItemDecoration(
+                requireContext(),
+                DividerItemDecoration.VERTICAL
+            )
+        )
     }
 
     @OptIn(FlowPreview::class)

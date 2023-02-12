@@ -8,18 +8,30 @@ import com.example.satellites.database.list.SatelliteEntity
 import com.example.satellites.databinding.ItemSatelliteListBinding
 
 class SatelliteListHolder private constructor(
-    private val binding: ItemSatelliteListBinding
+    private val binding: ItemSatelliteListBinding,
+    private val onItemClicked: (Int) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
+    private var satelliteEntityItem: SatelliteEntity? = null
+
     companion object {
-        fun create(parent: ViewGroup): SatelliteListHolder {
+        fun create(parent: ViewGroup, onItemClicked: (Int) -> Unit): SatelliteListHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
             val binding = ItemSatelliteListBinding.inflate(layoutInflater, parent, false)
-            return SatelliteListHolder(binding)
+            return SatelliteListHolder(binding, onItemClicked)
+        }
+    }
+
+    init {
+        binding.root.setOnClickListener {
+            satelliteEntityItem?.let { satelliteEntity ->
+                onItemClicked(satelliteEntity.id)
+            }
         }
     }
 
     fun bind(satelliteEntity: SatelliteEntity) {
+        satelliteEntityItem = satelliteEntity
         val isActive = satelliteEntity.isActive == 1
         binding.stateIndicatorView.updateState(isActive)
         binding.nameTV.text = satelliteEntity.name

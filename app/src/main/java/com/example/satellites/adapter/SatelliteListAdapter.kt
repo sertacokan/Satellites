@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.satellites.database.list.SatelliteEntity
 import com.example.satellites.holder.SatelliteListHolder
 
-class SatelliteListAdapter : ListAdapter<SatelliteEntity, SatelliteListHolder>(SatelliteEntityDiffUtil) {
+class SatelliteListAdapter(
+    val onItemClicked: (Int) -> Unit
+) : ListAdapter<SatelliteEntity, SatelliteListHolder>(SatelliteEntityDiffUtil) {
 
     private companion object SatelliteEntityDiffUtil : DiffUtil.ItemCallback<SatelliteEntity>() {
         override fun areItemsTheSame(oldItem: SatelliteEntity, newItem: SatelliteEntity): Boolean {
@@ -22,7 +24,7 @@ class SatelliteListAdapter : ListAdapter<SatelliteEntity, SatelliteListHolder>(S
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SatelliteListHolder {
-        return SatelliteListHolder.create(parent)
+        return SatelliteListHolder.create(parent, onItemClicked)
     }
 
     override fun onBindViewHolder(holder: SatelliteListHolder, position: Int) {
