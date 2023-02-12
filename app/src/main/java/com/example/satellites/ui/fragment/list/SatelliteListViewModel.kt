@@ -55,12 +55,12 @@ class SatelliteListViewModel(
     private suspend fun fetchSatellites() {
         when (val satelliteListNetworkState = satelliteListRepository.fetchSatelliteList()) {
             ErrorState -> {
-                _uiState.value = Error(R.string.error_message)
+                _uiState.value = Error(R.string.list_error_message)
             }
 
             is FailureState -> {
                 Log.d("Fetch Satellite", satelliteListNetworkState.throwable.message.orEmpty())
-                _uiState.value = Error(R.string.error_message)
+                _uiState.value = Error(R.string.list_error_message)
             }
 
             is SuccessState -> {
